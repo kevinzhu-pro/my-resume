@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Zhu · Luxury Retail Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#c9a96e;
+    --gold-light:#e8d5a3;
+    --gold-dim:rgba(201,169,110,0.15);
+    --white:#ffffff;
+    --gray:#8e8e93;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:#000;
+    color:#fff;
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+
+  /* ── HERO ── */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:60px 24px;
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;
+    width:800px;height:800px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,169,110,0.07) 0%,transparent 65%);
+    top:50%;left:50%;transform:translate(-50%,-50%);
+    animation:pulse 7s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+  .hero-eyebrow{font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp 0.8s ease forwards 0.3s}
+  .hero-name{font-size:clamp(60px,11vw,116px);font-weight:200;letter-spacing:-0.03em;line-height:1;margin-bottom:10px;opacity:0;animation:fadeUp 0.8s ease forwards 0.6s}
+  .hero-name span{font-weight:700;color:var(--gold)}
+  .hero-title{font-size:clamp(15px,2.5vw,22px);font-weight:300;color:rgba(255,255,255,0.45);margin-bottom:12px;letter-spacing:0.02em;opacity:0;animation:fadeUp 0.8s ease forwards 0.85s}
+  .hero-subtitle{font-size:13px;color:rgba(255,255,255,0.25);letter-spacing:0.08em;margin-bottom:44px;opacity:0;animation:fadeUp 0.8s ease forwards 1.0s}
+  .hero-langs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;opacity:0;animation:fadeUp 0.8s ease forwards 1.15s}
+  .lang-pill{padding:5px 16px;border:1px solid rgba(201,169,110,0.35);border-radius:100px;font-size:12px;letter-spacing:0.08em;color:var(--gold-light)}
+  .hero-scroll{opacity:0;animation:fadeUp 0.8s ease forwards 1.4s;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,rgba(201,169,110,0.4),transparent);animation:scrollLine 2.2s ease-in-out infinite}
+  @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ── AWARD HERO SECTION ── */
+  .award-section{
+    background:#050505;
+    border-top:1px solid rgba(201,169,110,0.12);
+    border-bottom:1px solid rgba(201,169,110,0.12);
+    padding:80px 24px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .award-section::before{
+    content:'';position:absolute;
+    width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,169,110,0.06) 0%,transparent 60%);
+    top:50%;left:50%;transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  .award-trophy{
+    font-size:48px;margin-bottom:24px;
+    opacity:0;transform:scale(0.7);
+    transition:opacity 0.6s ease,transform 0.6s ease;
+  }
+  .award-trophy.visible{opacity:1;transform:scale(1)}
+  .award-label{
+    font-size:11px;letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:20px;
+    opacity:0;transform:translateY(14px);
+    transition:opacity 0.6s ease 0.1s,transform 0.6s ease 0.1s;
+  }
+  .award-label.visible{opacity:1;transform:translateY(0)}
+  .award-title{
+    font-size:clamp(28px,5vw,52px);font-weight:200;letter-spacing:-0.02em;
+    color:#fff;margin-bottom:8px;
+    opacity:0;transform:translateY(16px);
+    transition:opacity 0.7s ease 0.2s,transform 0.7s ease 0.2s;
+  }
+  .award-title b{font-weight:700;color:var(--gold)}
+  .award-title.visible{opacity:1;transform:translateY(0)}
+  .award-desc{
+    font-size:15px;color:rgba(255,255,255,0.4);margin-bottom:40px;
+    opacity:0;transition:opacity 0.7s ease 0.3s;
+  }
+  .award-desc.visible{opacity:1}
+  .award-stats{
+    display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+    margin-top:48px;
+  }
+  .award-stat{
+    padding:20px 40px;border-right:1px solid rgba(201,169,110,0.15);
+    opacity:0;transform:translateY(12px);
+    transition:opacity 0.5s ease,transform 0.5s ease;
+  }
+  .award-stat:last-child{border-right:none}
+  .award-stat.visible{opacity:1;transform:translateY(0)}
+  .award-stat-num{
+    font-size:36px;font-weight:700;letter-spacing:-0.04em;
+    background:linear-gradient(135deg,#fff 30%,var(--gold));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:4px;
+  }
+  .award-stat-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray)}
+
+  /* ── STAT STRIP ── */
+  .stat-strip{
+    background:#0a0a0a;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    padding:56px 24px;display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  }
+  .stat-item{
+    flex:1;max-width:210px;min-width:120px;text-align:center;padding:0 24px;
+    border-right:1px solid rgba(255,255,255,0.06);
+    opacity:0;transform:translateY(18px);
+    transition:opacity 0.7s ease,transform 0.7s ease;
+  }
+  .stat-item:last-child{border-right:none}
+  .stat-item.visible{opacity:1;transform:translateY(0)}
+  .stat-num{
+    font-size:52px;font-weight:700;line-height:1;letter-spacing:-0.04em;
+    background:linear-gradient(135deg,#fff 30%,var(--gold));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:8px;
+  }
+  .stat-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray)}
+
+  /* ── SECTIONS ── */
+  section{max-width:860px;margin:0 auto;padding:96px 24px}
+  .section-eyebrow{
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:14px;opacity:0;transform:translateY(14px);
+    transition:opacity 0.6s ease,transform 0.6s ease;
+  }
+  .section-headline{
+    font-size:clamp(34px,5.5vw,60px);font-weight:200;letter-spacing:-0.03em;
+    line-height:1.06;color:#fff;margin-bottom:48px;
+    opacity:0;transform:translateY(18px);
+    transition:opacity 0.7s ease 0.1s,transform 0.7s ease 0.1s;
+  }
+  .section-headline b{font-weight:700;color:var(--gold)}
+  .section-eyebrow.visible,.section-headline.visible{opacity:1;transform:translateY(0)}
+
+  /* ── EXPERTISE GRID ── */
+  .expertise-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1px;background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;
+  }
+  .expertise-card{
+    background:#000;padding:30px 22px;
+    opacity:0;transform:scale(0.96);
+    transition:opacity 0.5s ease,transform 0.5s ease,background 0.25s;
+  }
+  .expertise-card:hover{background:#0c0c0c}
+  .expertise-card.visible{opacity:1;transform:scale(1)}
+  .expertise-icon{font-size:22px;margin-bottom:14px;display:block}
+  .expertise-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:5px}
+  .expertise-desc{font-size:13px;color:var(--gray);line-height:1.5}
+
+  /* ── BRAND DIVIDER ── */
+  .brand-divider{padding:70px 24px;text-align:center;position:relative}
+  .brand-divider::before{
+    content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:600px;height:1px;
+    background:linear-gradient(to right,transparent,rgba(201,169,110,0.25),transparent);
+  }
+  .brand-divider-text{
+    display:inline-block;background:#000;padding:0 20px;
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:rgba(255,255,255,0.18);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .tl-item{
+    display:grid;grid-template-columns:130px 1px 1fr;gap:0 28px;
+    opacity:0;transform:translateX(-18px);
+    transition:opacity 0.55s ease,transform 0.55s ease;
+  }
+  .tl-item.visible{opacity:1;transform:translateX(0)}
+  .tl-date{text-align:right;padding:30px 0;font-size:11px;color:var(--gray);letter-spacing:0.04em;line-height:1.5}
+  .tl-date strong{display:block;font-size:12px;font-weight:500;color:var(--gold-light);margin-bottom:2px}
+  .tl-line{position:relative;display:flex;justify-content:center}
+  .tl-line::before{content:'';position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:1px;background:rgba(255,255,255,0.07)}
+  .tl-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);margin-top:36px;position:relative;z-index:1;flex-shrink:0;box-shadow:0 0 0 3px rgba(201,169,110,0.12)}
+  .tl-content{padding:26px 0}
+  .tl-brand{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+  .tl-role{font-size:19px;font-weight:500;color:#fff;margin-bottom:3px;letter-spacing:-0.01em}
+  .tl-location{font-size:12px;color:var(--gray);margin-bottom:12px}
+  .tl-points{list-style:none;display:flex;flex-direction:column;gap:5px}
+  .tl-points li{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.55;padding-left:14px;position:relative}
+  .tl-points li::before{content:'';position:absolute;left:0;top:9px;width:4px;height:1px;background:var(--gold);opacity:0.5}
+
+  /* ── ZEGNA FEATURE CARD ── */
+  .feature-card{
+    background:#080808;
+    border:1px solid rgba(201,169,110,0.2);
+    border-radius:24px;padding:48px;margin:48px 0;
+    position:relative;overflow:hidden;
+    opacity:0;transform:translateY(22px);
+    transition:opacity 0.8s ease,transform 0.8s ease;
+  }
+  .feature-card::after{
+    content:'MANAGER';
+    position:absolute;right:-20px;top:50%;
+    transform:translateY(-50%) rotate(90deg);
+    font-size:120px;font-weight:900;
+    color:rgba(201,169,110,0.03);
+    letter-spacing:-0.05em;white-space:nowrap;pointer-events:none;
+  }
+  .feature-card.visible{opacity:1;transform:translateY(0)}
+  .feature-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 14px;
+    background:rgba(201,169,110,0.08);
+    border:1px solid rgba(201,169,110,0.25);
+    border-radius:100px;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:18px;
+  }
+  .feature-title{font-size:30px;font-weight:200;letter-spacing:-0.02em;color:#fff;margin-bottom:4px}
+  .feature-subtitle{font-size:14px;color:var(--gray);margin-bottom:28px}
+  .feature-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .feature-col-title{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(201,169,110,0.12)}
+
+  /* ── AWARD INLINE CALLOUT ── */
+  .award-callout{
+    display:flex;align-items:center;gap:16px;
+    background:rgba(201,169,110,0.05);
+    border:1px solid rgba(201,169,110,0.18);
+    border-radius:12px;padding:16px 20px;
+    margin-bottom:24px;
+  }
+  .award-callout-icon{font-size:24px;flex-shrink:0}
+  .award-callout-text{font-size:13px;color:var(--gold-light);line-height:1.5}
+  .award-callout-text strong{display:block;font-weight:600;font-size:14px;color:var(--gold);margin-bottom:2px}
+
+  /* ── SKILLS ── */
+  .skill-cloud{display:flex;flex-wrap:wrap;gap:9px;opacity:0;transition:opacity 0.8s ease}
+  .skill-cloud.visible{opacity:1}
+  .skill-pill{padding:7px 16px;border-radius:100px;font-size:13px;transition:transform 0.2s ease;cursor:default}
+  .skill-pill:hover{transform:translateY(-2px)}
+  .skill-pill.primary{background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.32);color:var(--gold-light)}
+  .skill-pill.secondary{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.45)}
+
+  /* ── CONTACT FOOTER ── */
+  .contact-footer{background:#050505;border-top:1px solid rgba(255,255,255,0.05);padding:80px 24px;text-align:center}
+  .contact-footer h2{font-size:clamp(30px,5vw,54px);font-weight:200;letter-spacing:-0.03em;color:#fff;margin-bottom:40px}
+  .contact-footer h2 b{font-weight:700;color:var(--gold)}
+  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:24px;margin-bottom:48px}
+  .contact-link{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
+  .contact-link:hover{color:var(--gold)}
+  .contact-link-icon{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:15px}
+  .copyright{font-size:11px;color:rgba(255,255,255,0.12);letter-spacing:0.1em}
+
+  @media(max-width:620px){
+    .tl-item{grid-template-columns:76px 1px 1fr;gap:0 14px}
+    .tl-date{font-size:10px}
+    .feature-cols{grid-template-columns:1fr}
+    .award-stat{padding:16px 20px;border-right:none;border-bottom:1px solid rgba(201,169,110,0.12)}
+    .award-stat:last-child{border-bottom:none}
+    .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .stat-item:last-child{border-bottom:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-eyebrow">Introducing</div>
+  <div class="hero-name">Kevin <span>Zhu</span></div>
+  <div class="hero-title">Luxury Retail Leader</div>
+  <div class="hero-subtitle">Store Manager &amp; Sales · Operations Lead</div>
+  <div class="hero-langs">
+    <span class="lang-pill">English</span>
+    <span class="lang-pill">普通话</span>
+    <span class="lang-pill">廣東話</span>
+    <span class="lang-pill">日本語</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<!-- ─── GLOBAL AWARD SECTION ─── -->
+<div class="award-section">
+  <div class="award-trophy">🏆</div>
+  <div class="award-label">Global Recognition · Ermenegildo Zegna · Milan</div>
+  <div class="award-title"><b>Global Outstanding</b><br>Manager Award</div>
+  <div class="award-desc">Awarded in Milan · Invited to the Milan Fashion Show</div>
+  <div class="award-stats">
+    <div class="award-stat">
+      <div class="award-stat-num">1<span style="font-size:20px;font-weight:300"> of </span>8</div>
+      <div class="award-stat-label">Worldwide Recipients</div>
+    </div>
+    <div class="award-stat">
+      <div class="award-stat-num">179</div>
+      <div class="award-stat-label">Stores in China</div>
+    </div>
+    <div class="award-stat">
+      <div class="award-stat-num">1</div>
+      <div class="award-stat-label">Winner Across All China</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STAT STRIP ─── -->
+<div class="stat-strip">
+  <div class="stat-item">
+    <div class="stat-num">20<span style="font-size:28px;font-weight:300">+</span></div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">9,400</div>
+    <div class="stat-label">sq ft Flagship Managed</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Top-Tier Brands</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Languages</div>
+  </div>
+</div>
+
+<!-- ─── CORE COMPETENCIES ─── -->
+<section>
+  <div class="section-eyebrow">Management Competencies</div>
+  <div class="section-headline">Built to<br><b>lead at scale.</b></div>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title">Flagship Operations</div>
+      <div class="expertise-desc">Directed all operations of a 9,400 sq ft Peter Marino-designed flagship. Market analysis and competitor benchmarking.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◉</span>
+      <div class="expertise-title">Team Leadership</div>
+      <div class="expertise-desc">Recruits, trains, and coaches high-performance teams to elite brand standards across multiple luxury houses.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title">Revenue Strategy</div>
+      <div class="expertise-desc">Consistently exceeds corporate targets. Drives proactive sales strategy and cultivates top-tier VIP clientele.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◉</span>
+      <div class="expertise-title">Store Expansion</div>
+      <div class="expertise-desc">Led grand openings and renovations. Spearheaded new boutique launches and managed full store onboarding.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title">Talent Development</div>
+      <div class="expertise-desc">Mentored associates to award-winning performance. Led national BM workshops across the Greater China region.</div>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◉</span>
+      <div class="expertise-title">HNW Clienteling & CRM</div>
+      <div class="expertise-desc">CRM-driven after-sales care for high-net-worth clients. Strengthens loyalty and lifetime value across markets.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="brand-divider"><span class="brand-divider-text">Career Journey</span></div>
+
+<!-- ─── TIMELINE ─── -->
+<section>
+  <div class="section-eyebrow">Experience</div>
+  <div class="section-headline">The brands<br>that define <b>leadership.</b></div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date"><strong>2025 – Now</strong>Toronto</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Giorgio Armani · Emporio Armani</div>
+        <div class="tl-role">Store Supervisor</div>
+        <div class="tl-location">Yorkdale Mall, Toronto</div>
+        <ul class="tl-points">
+          <li>Drives team performance through inclusive coaching, KPI alignment, and ongoing professional development</li>
+          <li>Oversees daily boutique operations, inventory logistics, and loss prevention to uphold Armani's global premium standards</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><strong>2022 – 2024</strong>Toronto</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Salvatore Ferragamo</div>
+        <div class="tl-role">Key Holder · Rehired for Outstanding Performance</div>
+        <div class="tl-location">Yorkdale Mall, Toronto</div>
+        <ul class="tl-points">
+          <li>Executed proactive sales strategies to consistently meet and exceed corporate targets</li>
+          <li>Deepened relationships with top-tier VIP clients, maximizing lifetime value and brand loyalty</li>
+          <li>Spearheaded new customer acquisition and built a robust boutique CRM database</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><strong>2021 – 2022</strong>Winnipeg</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Calvin Klein · PVH Corp.</div>
+        <div class="tl-role">Assistant Store Manager</div>
+        <div class="tl-location">Winnipeg</div>
+        <ul class="tl-points">
+          <li>Strategic partner to the Store Manager; aligned operations with CK's global standards and corporate priorities</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><strong>2020 – 2021</strong>Winnipeg</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Kate Spade · Coach Inc.</div>
+        <div class="tl-role">Supervisor</div>
+        <div class="tl-location">Winnipeg</div>
+        <ul class="tl-points">
+          <li>Consistent top performer; drove team accountability and exceeded sales goals in a fast-paced luxury environment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date"><strong>2019 – 2020</strong>Toronto</div>
+      <div class="tl-line"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Salvatore Ferragamo</div>
+        <div class="tl-role">Senior Client Advisor · Key Holder</div>
+        <div class="tl-location">Yorkdale Mall, Toronto</div>
+        <ul class="tl-points">
+          <li>Exceeded boutique revenue targets; maintained a personal VIP client book with CRM-led after-sales care</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ZEGNA FEATURE CARD -->
+  <div class="feature-card">
+    <div class="feature-badge">★ Career-Defining Role</div>
+    <div class="feature-title">Ermenegildo Zegna</div>
+    <div class="feature-subtitle">Peter Marino Concept Flagship Store Manager · Nanjing · 9,400 sq ft · Oct 2010 – Nov 2017 (7 years)</div>
+
+    <div class="award-callout">
+      <span class="award-callout-icon">🏆</span>
+      <div class="award-callout-text">
+        <strong>Global Outstanding Manager Recognition · Awarded in Milan</strong>
+        1 of 8 recipients worldwide — the sole winner across all 179 stores in China. Invited to the Milan Fashion Show.
+      </div>
+    </div>
+
+    <div class="feature-cols">
+      <div>
+        <div class="feature-col-title">Strategy & Operations</div>
+        <ul class="tl-points">
+          <li>Directed all operations of a 9,400 sq ft Peter Marino-designed flagship</li>
+          <li>Led market analysis and competitor benchmarking to shape regional retail strategy</li>
+          <li>Oversaw renovation and grand opening of Nanjing PMA flagship</li>
+          <li>Spearheaded launch of Wuhan International Plaza store</li>
+        </ul>
+      </div>
+      <div>
+        <div class="feature-col-title">Leadership & Recognition</div>
+        <ul class="tl-points">
+          <li>Built high-performance teams through recruitment, training, and elite coaching</li>
+          <li>Mentored associate Ruby Liu to win the GCR Zegna Master Award</li>
+          <li>Led national BM workshops on team performance across Greater China</li>
+          <li>Won ISDS performance reward 3 consecutive times; shared best practices network-wide</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="brand-divider"><span class="brand-divider-text">Earlier Career</span></div>
+
+<!-- ─── EARLIER CAREER ─── -->
+<section style="padding-top:56px">
+  <div class="section-eyebrow">Before Luxury Retail</div>
+  <div class="section-headline">A <b>world-class</b><br>foundation.</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date"><strong>2008 – 2010</strong>Nanjing</div>
+      <div class="tl-line"><div class="tl-dot" style="background:rgba(255,255,255,0.25)"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Porsche China · Nanjing PCN</div>
+        <div class="tl-role">CRM & Marketing Manager</div>
+        <div class="tl-location">Shanghai / Nanjing</div>
+        <ul class="tl-points">
+          <li>Managed PCD customer data, satisfaction surveys (SSS), and event analysis for Porsche China's regional dealer network</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date"><strong>2005 – 2007</strong>Nanjing</div>
+      <div class="tl-line"><div class="tl-dot" style="background:rgba(255,255,255,0.25)"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Sofitel Hotel Galaxy & Golf Resort ★★★★★</div>
+        <div class="tl-role">Front Office Manager · Guest Service Manager</div>
+        <div class="tl-location">Nanjing</div>
+        <ul class="tl-points">
+          <li>Led front office operations, sales & marketing, and guest services across two flagship Sofitel properties</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date"><strong>2003 – 2005</strong>Hong Kong</div>
+      <div class="tl-line"><div class="tl-dot" style="background:rgba(255,255,255,0.25)"></div></div>
+      <div class="tl-content">
+        <div class="tl-brand">Star Cruise Corporation</div>
+        <div class="tl-role">Front Office Supervisor · Visa Specialist</div>
+        <div class="tl-location">Hong Kong</div>
+        <ul class="tl-points">
+          <li>Supervised international guest services and visa coordination for multi-nationality clientele</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SKILLS ─── -->
+<section style="padding-top:32px">
+  <div class="section-eyebrow">Skills</div>
+  <div class="section-headline">Built to lead.<br><b>Nothing missing.</b></div>
+  <div class="skill-cloud">
+    <span class="skill-pill primary">Flagship Store Management</span>
+    <span class="skill-pill primary">Team Leadership & Coaching</span>
+    <span class="skill-pill primary">Revenue Strategy</span>
+    <span class="skill-pill primary">Talent Recruitment</span>
+    <span class="skill-pill primary">Store Expansion & Launch</span>
+    <span class="skill-pill primary">HNW Clienteling</span>
+    <span class="skill-pill secondary">Store Operations</span>
+    <span class="skill-pill secondary">Loss Prevention</span>
+    <span class="skill-pill secondary">CRM & After-Sales</span>
+    <span class="skill-pill secondary">Market Analysis</span>
+    <span class="skill-pill secondary">Performance Management</span>
+    <span class="skill-pill secondary">Client Acquisition</span>
+    <span class="skill-pill secondary">Brand Standards</span>
+    <span class="skill-pill secondary">Inventory Logistics</span>
+    <span class="skill-pill secondary">Multilingual Leadership</span>
+    <span class="skill-pill secondary">Luxury RTW</span>
+  </div>
+</section>
+
+<!-- ─── CONTACT FOOTER ─── -->
+<div class="contact-footer">
+  <h2>One <b>more</b> thing.</h2>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:Kevin.zjw@gmail.com">
+      <span class="contact-link-icon">✉</span>Kevin.zjw@gmail.com
+    </a>
+    <a class="contact-link" href="tel:+14318776666">
+      <span class="contact-link-icon">✆</span>+1 (431) 877-6666
+    </a>
+    <span class="contact-link">
+      <span class="contact-link-icon">◎</span>Markham, Ontario, Canada
+    </span>
+  </div>
+  <div class="copyright">References and portfolio available upon request &nbsp;·&nbsp; Kevin Zhu &nbsp;·&nbsp; 2026</div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    el.classList.add('visible');
+    if(el.classList.contains('tl-item')){
+      const siblings=[...el.parentElement.querySelectorAll('.tl-item')];
+      let d=0;
+      siblings.forEach(s=>{if(!s.classList.contains('visible')){setTimeout(()=>s.classList.add('visible'),d);d+=90;}});
+    }
+    if(el.classList.contains('award-stats')){
+      [...el.querySelectorAll('.award-stat')].forEach((s,i)=>setTimeout(()=>s.classList.add('visible'),i*120));
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll(
+  '.stat-item,.section-eyebrow,.section-headline,.expertise-card,.tl-item,.feature-card,.skill-cloud,.award-trophy,.award-label,.award-title,.award-desc,.award-stats'
+).forEach((el,i)=>{
+  if(el.classList.contains('expertise-card'))el.style.transitionDelay=((i%6)*0.07)+'s';
+  obs.observe(el);
+});
+document.querySelectorAll('.stat-item').forEach((el,i)=>el.style.transitionDelay=(i*0.11)+'s');
+</script>
+</body>
+</html>
