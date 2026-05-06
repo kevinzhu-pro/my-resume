@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Zhu — Resume</title>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gray: #8a8a8e;
+    --light-gray: #f5f5f7;
+    --mid-gray: #d2d2d7;
+    --gold: #c8a96e;
+    --dark-gold: #a8883a;
+    --page-width: 210mm;
+    --page-height: 297mm;
+  }
+
+  body {
+    font-family: 'Gill Sans', 'Trebuchet MS', Helvetica, sans-serif;
+    background: #e8e8ed;
+    color: var(--black);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .page {
+    width: var(--page-width);
+    min-height: var(--page-height);
+    background: var(--white);
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.2);
+  }
+
+  /* ── PAGE 1 — COVER ── */
+  .cover {
+    width: 100%;
+    height: var(--page-height);
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(200,169,110,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,169,110,0.08) 0%, transparent 50%);
+  }
+
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .cover-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.6;
+  }
+
+  .cover-top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 18mm;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Gill Sans', 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14mm;
+  }
+
+  .cover-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 300;
+    font-size: 62px;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 6mm;
+    letter-spacing: -1px;
+  }
+
+  .cover-name span {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .cover-title {
+    font-family: 'Gill Sans', 'Trebuchet MS', Helvetica, sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16mm;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 10mm;
+  }
+
+  .cover-tagline {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 140mm;
+    margin-bottom: 18mm;
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: 12mm;
+  }
+
+  .cover-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-stat-num {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .cover-stat-label {
+    font-size: 8px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  .cover-bottom {
+    position: absolute;
+    bottom: 10mm;
+    left: 18mm;
+    right: 18mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+  }
+
+  .cover-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .cover-contact-item {
+    font-size: 8px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+
+  .cover-year {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 70px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+  }
+
+  /* ── PAGE 2 — EXPERIENCE ── */
+  .exp-page {
+    width: 100%;
+    min-height: var(--page-height);
+    background: var(--white);
+    padding: 14mm 18mm;
+    position: relative;
+  }
+
+  .exp-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--dark-gold), var(--gold));
+  }
+
+  .section-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6mm;
+  }
+
+  .section-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--black);
+    margin-bottom: 8mm;
+    line-height: 1.1;
+  }
+
+  .thin-rule {
+    height: 1px;
+    background: var(--mid-gray);
+    margin-bottom: 8mm;
+  }
+
+  /* Timeline layout */
+  .timeline {
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28mm;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent 95%);
+  }
+
+  .job {
+    display: flex;
+    gap: 8mm;
+    margin-bottom: 7mm;
+    position: relative;
+  }
+
+  .job-date-col {
+    width: 28mm;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 8mm;
+    position: relative;
+  }
+
+  .job-date-col::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .job-date {
+    font-size: 8px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  .job-date.current {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .job-content {
+    flex: 1;
+    padding-bottom: 6mm;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .job:last-child .job-content {
+    border-bottom: none;
+  }
+
+  .job-company {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--black);
+    margin-bottom: 1mm;
+  }
+
+  .job-role {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+
+  .job-location {
+    font-size: 8px;
+    color: var(--mid-gray);
+    margin-bottom: 3mm;
+  }
+
+  .job-desc {
+    font-size: 9px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  .job-highlights {
+    margin-top: 2.5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+  }
+
+  .highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5mm;
+    font-size: 8.5px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .highlight::before {
+    content: '–';
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 2mm;
+    background: linear-gradient(135deg, #0a0a0a, #1c1c1e);
+    color: var(--gold);
+    padding: 1.5mm 3mm;
+    border-radius: 2px;
+    font-size: 7.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2mm;
+    border: 1px solid rgba(200,169,110,0.3);
+  }
+
+  /* ── PAGE 3 — SKILLS & PROFILE ── */
+  .skills-page {
+    width: 100%;
+    min-height: var(--page-height);
+    background: var(--black);
+    padding: 14mm 18mm;
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+  }
+
+  .skills-page-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 40% at 50% 0%, rgba(200,169,110,0.1) 0%, transparent 70%);
+  }
+
+  .skills-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--dark-gold), var(--gold));
+  }
+
+  .skills-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10mm;
+    margin-bottom: 10mm;
+  }
+
+  .skills-section-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6mm;
+    position: relative;
+    z-index: 1;
+  }
+
+  .skill-category {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 6mm;
+  }
+
+  .skill-category-title {
+    font-size: 7.5px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4mm;
+  }
+
+  .skill-item {
+    font-size: 9px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    padding: 1.5mm 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.4;
+  }
+
+  .skill-item:last-child { border-bottom: none; }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2mm 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .lang-item:last-child { border-bottom: none; }
+
+  .lang-name {
+    font-size: 9px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .lang-level {
+    font-size: 7.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--gold);
+  }
+
+  .quote-section {
+    position: relative;
+    z-index: 1;
+    margin-top: 8mm;
+    padding: 6mm 8mm;
+    border-left: 2px solid var(--gold);
+    background: rgba(200,169,110,0.05);
+  }
+
+  .quote-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+  }
+
+  .quote-author {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 3mm;
+  }
+
+  .edu-section {
+    position: relative;
+    z-index: 1;
+    margin-top: 8mm;
+    display: flex;
+    gap: 8mm;
+  }
+
+  .edu-block {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 5mm;
+  }
+
+  .edu-label {
+    font-size: 7.5px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+
+  .edu-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13px;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 1mm;
+  }
+
+  .edu-detail {
+    font-size: 8px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+  }
+
+  .page-footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-contact {
+    font-size: 7.5px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-align: right;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+    .page:last-child { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ PAGE 1: COVER ══════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-grid"></div>
+    <div class="cover-accent"></div>
+    <div class="cover-top-bar"></div>
+
+    <div class="cover-content">
+      <div class="cover-eyebrow">Luxury Retail Leadership · Toronto, Canada</div>
+
+      <div class="cover-name">Kevin<br><span>Zhu</span></div>
+      <div class="cover-title">Retail Management · Client Excellence</div>
+
+      <div class="cover-divider"></div>
+
+      <div class="cover-tagline">
+        "A father of three and nature-driven adventurer who led a 12,000 km self-driving expedition across 11 National Parks — bringing the same discipline and purposeful vision to every team I lead."
+      </div>
+
+      <div class="cover-stats">
+        <div class="cover-stat">
+          <div class="cover-stat-num">20+</div>
+          <div class="cover-stat-label">Years Experience</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">9,400</div>
+          <div class="cover-stat-label">Sqft Flagship Managed</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">1/8</div>
+          <div class="cover-stat-label">Global Award Winner</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">4</div>
+          <div class="cover-stat-label">Languages Spoken</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-contact">
+        <div class="cover-contact-item">Kevin.zjw@gmail.com</div>
+        <div class="cover-contact-item">(+1) 431-877-6666</div>
+        <div class="cover-contact-item">126 Canterfield Close, Ontario, Canada L3P 7W1</div>
+        <div class="cover-contact-item">youtube.com/@kevinshotfilms881 · @kevinshotfilms</div>
+      </div>
+      <div class="cover-year">2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 2: EXPERIENCE ══════════════ -->
+<div class="page">
+  <div class="exp-page">
+    <div class="section-label">Career Journey</div>
+    <div class="section-title">Work Experience</div>
+    <div class="thin-rule"></div>
+
+    <div class="timeline">
+
+      <!-- Giorgio Armani -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date current">Jan 2025<br>Present</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Giorgio Armani — Emporio Armani</div>
+          <div class="job-role">Supervisor</div>
+          <div class="job-location">Yorkdale Mall, Toronto, CA</div>
+          <div class="job-desc">Drive operational excellence and team performance through inclusive coaching and professional development. Oversee daily business operations, complex inventory logistics, and loss prevention strategies to maximize sales efficiency and team accountability.</div>
+        </div>
+      </div>
+
+      <!-- Salvatore Ferragamo 2022 -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Oct 2022<br>Dec 2024</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Salvatore Ferragamo</div>
+          <div class="job-role">Key Holder</div>
+          <div class="job-location">Yorkdale Mall, Toronto, CA · Rehired for outstanding performance</div>
+          <div class="job-highlights">
+            <div class="highlight">Proactively drove sales strategies to consistently meet and exceed corporate revenue targets</div>
+            <div class="highlight">Cultivated top-tier client relationships to maximize lifetime value and brand retention</div>
+            <div class="highlight">Spearheaded new customer acquisition and built a robust CRM database to expand market reach</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calvin Klein -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Aug 2021<br>Jul 2022</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Calvin Klein</div>
+          <div class="job-role">Assistant Store Manager</div>
+          <div class="job-location">Winnipeg, CA</div>
+          <div class="job-desc">Strategic partner to leadership, aligning store decisions with corporate priorities. Flexed business strategies and personal selling techniques to adapt to market trends while maintaining Calvin Klein's global standards.</div>
+        </div>
+      </div>
+
+      <!-- Kate Spade -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Oct 2020<br>Aug 2021</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Kate Spade — Tapestry Inc.</div>
+          <div class="job-role">Supervisor</div>
+          <div class="job-location">Winnipeg, CA</div>
+          <div class="job-desc">Solution-oriented leader consistently ranked among top performers. Proactively adapted to business needs, resolved customer issues with forward-thinking solutions, and steadfastly pushed self and team for results.</div>
+        </div>
+      </div>
+
+      <!-- Ferragamo 2019 -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Jul 2019<br>Jul 2020</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Salvatore Ferragamo</div>
+          <div class="job-role">Senior Client Advisor · Key Holder</div>
+          <div class="job-location">Yorkdale Mall, Toronto, CA</div>
+          <div class="job-desc">Achieved shop revenue targets, maintained strong clientelling with loyal customers, created new customer databases, and delivered premium after-sales experiences via CRM systems.</div>
+        </div>
+      </div>
+
+      <!-- Ermenegildo Zegna -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Oct 2010<br>Nov 2017</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Ermenegildo Zegna</div>
+          <div class="job-role">Peter Marino Concept Flagship Store Manager</div>
+          <div class="job-location">Shanghai, China · 9,400 sq ft</div>
+          <div class="job-highlights">
+            <div class="highlight">Spearheaded strategic business operations, market analysis, and competitor benchmarking</div>
+            <div class="highlight">Fostered high-performance culture via comprehensive recruitment, coaching, and talent management</div>
+            <div class="highlight">Leveraged CRM to deliver sophisticated after-sales care for high-net-worth clientele</div>
+            <div class="highlight">Opened multiple stores: Golden Eagle, Nanjing PMA (from SABA), and Wuhan International Plaza</div>
+          </div>
+          <div class="award-badge">★ Global Outstanding Manager Award — Milan · 1 of 8 Worldwide</div>
+        </div>
+      </div>
+
+      <!-- Porsche -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Jan 2008<br>Feb 2010</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Porsche Nanjing</div>
+          <div class="job-role">CRM & Marketing Manager</div>
+          <div class="job-location">Shanghai, China</div>
+          <div class="job-desc">Managed PCD network customer data, resolved complaints, supported Porsche sales operations, and conducted after-sales satisfaction surveys (SSS) with monthly customer base analysis.</div>
+        </div>
+      </div>
+
+      <!-- Sofitel -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Apr 2005<br>Dec 2007</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Sofitel Hotel Galaxy & Golf Resort Nanjing ★★★★★</div>
+          <div class="job-role">Front Office Manager · Guest Service Manager</div>
+          <div class="job-location">Nanjing, China</div>
+          <div class="job-desc">Oversaw hotel management, sales & marketing, and accounting operations. Excelled in customer relationship management and cross-cultural communication with international guests.</div>
+        </div>
+      </div>
+
+      <!-- Singapore Star Cruise -->
+      <div class="job">
+        <div class="job-date-col">
+          <div class="job-date">Apr 2003<br>Feb 2005</div>
+        </div>
+        <div class="job-content">
+          <div class="job-company">Singapore Star Cruise Corporation</div>
+          <div class="job-role">Front Office Supervisor · Visa Specialist</div>
+          <div class="job-location">Hong Kong Branch</div>
+          <div class="job-desc">Managed front office operations and visa verification for multicultural guests of various nationalities and socioeconomic backgrounds; coordinated with HK Immigration Office.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 3: SKILLS & CLOSING ══════════════ -->
+<div class="page">
+  <div class="skills-page">
+    <div class="skills-page-bg"></div>
+
+    <div style="position:relative;z-index:1;margin-bottom:6mm;">
+      <div class="section-label" style="color:var(--gold);">Competencies</div>
+      <div class="skills-section-title">Skills & Strengths</div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-category-title">Leadership & Management</div>
+        <div class="skill-item">Store & Flagship Operations Management</div>
+        <div class="skill-item">Team Coaching & Professional Development</div>
+        <div class="skill-item">Talent Recruitment & Performance Management</div>
+        <div class="skill-item">Inventory Logistics & Loss Prevention</div>
+        <div class="skill-item">Sales Strategy & Revenue Growth</div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">Client Excellence</div>
+        <div class="skill-item">Strategic Clienteling & CRM Systems</div>
+        <div class="skill-item">High-Net-Worth Client Retention</div>
+        <div class="skill-item">After-Sales Service Programs</div>
+        <div class="skill-item">Cross-Cultural Communication</div>
+        <div class="skill-item">Luxury Brand Positioning</div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">Languages</div>
+        <div class="lang-item">
+          <span class="lang-name">English</span>
+          <span class="lang-level">Fluent</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Mandarin</span>
+          <span class="lang-level">Excellent</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Cantonese</span>
+          <span class="lang-level">Excellent</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Japanese</span>
+          <span class="lang-level">Beginner</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">Technical & Digital</div>
+        <div class="skill-item">Microsoft Office Suite (Advanced)</div>
+        <div class="skill-item">Adobe Photoshop</div>
+        <div class="skill-item">CRM Platforms & Database Management</div>
+        <div class="skill-item">Video Production & Photography</div>
+        <div class="skill-item">OSTA Certified Computer Operator</div>
+      </div>
+    </div>
+
+    <div class="edu-section">
+      <div class="edu-block">
+        <div class="edu-label">Education</div>
+        <div class="edu-name">Nanjing Radio and TV University</div>
+        <div class="edu-detail">Finance & Accounting · International Finance, Economic Accounting Management</div>
+      </div>
+      <div class="edu-block">
+        <div class="edu-label">Certifications</div>
+        <div class="edu-name">Professional Credentials</div>
+        <div class="edu-detail">OSTA Computer Operator · Statistical Supervision Operator · Cantonese Language · Financial English (June 2010)</div>
+      </div>
+    </div>
+
+    <div class="quote-section">
+      <div class="quote-text">
+        "I am eager to demonstrate how my background in luxury retail and leadership can contribute to your team's continued success. My commitment to excellence will make me a valuable asset to your organization."
+      </div>
+      <div class="quote-author">— Kevin Zhu</div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-name">Kevin Zhu</div>
+      <div class="footer-contact">
+        Kevin.zjw@gmail.com · (+1) 431-877-6666<br>
+        Ontario, Canada · youtube.com/@kevinshotfilms881
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
